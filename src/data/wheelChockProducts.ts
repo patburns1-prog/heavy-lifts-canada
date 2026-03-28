@@ -1,5 +1,6 @@
 export type WheelChockProduct = {
   model: string;
+  title: string;
   material: string;
   gvwCapacity: string;
   tireSize: string;
@@ -13,6 +14,7 @@ export type WheelChockProduct = {
 export const wheelChockProducts: WheelChockProduct[] = [
   {
     model: '12590',
+    title: 'Light-Duty Polyurethane Wheel Chock',
     material: 'Polyurethane',
     gvwCapacity: '5 Ton (10,000 lbs.)',
     tireSize: 'Up to 27 in. O.D.',
@@ -24,6 +26,7 @@ export const wheelChockProducts: WheelChockProduct[] = [
   },
   {
     model: '12591',
+    title: 'Medium-Duty Polyurethane Wheel Chock',
     material: 'Polyurethane',
     gvwCapacity: '10 Ton (20,000 lbs.)',
     tireSize: 'Up to 35 in. O.D.',
@@ -35,6 +38,7 @@ export const wheelChockProducts: WheelChockProduct[] = [
   },
   {
     model: '12592',
+    title: 'Heavy-Duty Polyurethane Wheel Chock',
     material: 'Polyurethane',
     gvwCapacity: '20 Ton (40,000 lbs.)',
     tireSize: 'Up to 45 in. O.D.',
@@ -46,6 +50,7 @@ export const wheelChockProducts: WheelChockProduct[] = [
   },
   {
     model: '12593',
+    title: 'Large Equipment Wheel Chock',
     material: 'Polyurethane',
     gvwCapacity: '60 Ton (120,000 lbs.)',
     tireSize: '46 in. to 65 in. O.D.',
@@ -57,6 +62,7 @@ export const wheelChockProducts: WheelChockProduct[] = [
   },
   {
     model: '12594',
+    title: 'High-Capacity Polyurethane Wheel Chock',
     material: 'Polyurethane',
     gvwCapacity: '120 Ton (240,000 lbs.)',
     tireSize: 'Up to 65 in. O.D.',
@@ -68,6 +74,7 @@ export const wheelChockProducts: WheelChockProduct[] = [
   },
   {
     model: '12595',
+    title: 'Extreme-Duty Polyurethane Wheel Chock',
     material: 'Polyurethane',
     gvwCapacity: '250 Ton (500,000 lbs.)',
     tireSize: 'Up to 142 in. O.D.',
@@ -79,6 +86,7 @@ export const wheelChockProducts: WheelChockProduct[] = [
   },
   {
     model: '12597',
+    title: 'Molded Rubber Wheel Chock',
     material: 'Rubber',
     gvwCapacity: '20 Ton (40,000 lbs.)',
     tireSize: 'Up to 45 in. O.D.',

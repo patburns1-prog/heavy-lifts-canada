@@ -13,7 +13,7 @@ const { product } = Astro.props;
     <div class="hero-grid">
       <div>
         <p class="eyebrow">Wheel chock details</p>
-        <h1>Model {product.model}</h1>
+        <h1>{product.title}</h1>
         <p>{product.summary}</p>
         <div class="actions">
           <a class="btn btn-primary" href={`/request-a-quote?category=wheel-chocks&product=${product.model}`}>Quote {product.model}</a>
