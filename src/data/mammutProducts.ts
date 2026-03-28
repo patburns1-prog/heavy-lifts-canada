@@ -23,7 +23,7 @@ export const mammutProducts: MammutProduct[] = [
     stroke: '19.9 in | 506 mm',
     weight: '359 lb | 163 kg',
     summary: '3-stage Mammut jack designed for low lifting heights without giving up high-capacity performance.',
-    image: '/images/mammut-91000.png',
+    image: '/images/catalog/page-114.jpg',
     bestFor: 'Tight-clearance lifting where high capacity still matters.'
   },
   {
@@ -36,7 +36,7 @@ export const mammutProducts: MammutProduct[] = [
     stroke: '16.5 in | 420 mm',
     weight: '381 lb | 173 kg',
     summary: '2-stage Mammut jack built for additional lift height while maintaining high tonnage capability.',
-    image: '/images/mammut-jacks.png',
+    image: '/images/catalog/page-114.jpg',
     bestFor: 'Buyers balancing strong tonnage with more lift height.'
   },
   {
@@ -49,7 +49,7 @@ export const mammutProducts: MammutProduct[] = [
     stroke: '17.5 in | 445 mm',
     weight: '626 lb | 284 kg',
     summary: '110 ton high-lift Mammut jack for applications that need more vertical reach without extensions.',
-    image: '/images/mammut-jacks.png',
+    image: '/images/catalog/page-115.jpg',
     bestFor: 'Higher-reach lifting applications where vertical travel is key.'
   },
   {
@@ -62,7 +62,7 @@ export const mammutProducts: MammutProduct[] = [
     stroke: '8 in | 203 mm',
     weight: '370 lb | 168 kg',
     summary: 'Low-profile 110 ton Mammut jack built for high-tonnage lifting where clearance is tight.',
-    image: '/images/mammut-jacks.png',
+    image: '/images/catalog/page-115.jpg',
     bestFor: 'High-tonnage work with tighter starting clearance.'
   },
   {
@@ -75,7 +75,7 @@ export const mammutProducts: MammutProduct[] = [
     stroke: '21.8 in | 554 mm',
     weight: '831 lb | 377 kg',
     summary: 'High-capacity Mammut jack engineered for heavier equipment and larger service work.',
-    image: '/images/mammut-jacks.png',
+    image: '/images/catalog/page-116.jpg',
     bestFor: 'Heavier equipment service where more capacity is required.'
   },
   {
@@ -88,7 +88,7 @@ export const mammutProducts: MammutProduct[] = [
     stroke: '13.7 in | 350 mm',
     weight: '848 lb | 385 kg',
     summary: '220 ton Mammut air hydraulic jack built for the heaviest lifting demands.',
-    image: '/images/mammut-jacks.png',
+    image: '/images/catalog/page-116.jpg',
     bestFor: 'Extreme heavy-duty lifting demands and upper-end tonnage needs.'
   }
 ];
