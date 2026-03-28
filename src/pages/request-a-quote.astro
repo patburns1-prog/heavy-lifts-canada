@@ -55,7 +55,7 @@ const subjectBase = product
         <div class="form-grid">
           <div class="form-group">
             <label for="name">Name</label>
-            <input id="name" name="name" placeholder="Your name" />
+            <input id="name" name="name" placeholder="Your name" required />
           </div>
           <div class="form-group">
             <label for="company">Company</label>
@@ -63,7 +63,7 @@ const subjectBase = product
           </div>
           <div class="form-group">
             <label for="email">Email</label>
-            <input id="email" name="email" type="email" placeholder="you@example.com" />
+            <input id="email" name="email" type="email" placeholder="you@example.com" required />
           </div>
           <div class="form-group">
             <label for="phone">Phone</label>
@@ -96,7 +96,7 @@ const subjectBase = product
           </div>
           <div class="form-group form-group-full">
             <label for="application">Application Details</label>
-            <textarea id="application" name="application" placeholder="Tell us about the equipment, lift/load/tire/support requirements, environment, and anything else that affects fit."></textarea>
+            <textarea id="application" name="application" placeholder="Tell us about the equipment, lift/load/tire/support requirements, environment, and anything else that affects fit." required></textarea>
           </div>
         </div>
         <p class="form-note">
@@ -184,6 +184,7 @@ const subjectBase = product
     form?.addEventListener('input', updatePreview);
     form?.addEventListener('submit', (event) => {
       event.preventDefault();
+      if (!form.reportValidity()) return;
       const body = encodeURIComponent(buildMessage());
       const subject = encodeURIComponent(subjectBase);
       window.location.href = `mailto:${email}?subject=${subject}&body=${body}`;

@@ -2,7 +2,7 @@ export const siteConfig = {
   brandName: 'Heavy Lifts Canada',
   email: 'patburns1@gmail.com',
   phone: '613-600-8616',
-  phoneHref: '6136008616',
+  phoneHref: '+16136008616',
   address: '130 Mackenzie King Road, Fort McMurray, AB T9H 4L2',
   shortLocation: 'Fort McMurray, Alberta',
   businessHours: 'Monday to Friday, 8:00 AM to 5:00 PM',
