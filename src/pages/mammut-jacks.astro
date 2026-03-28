@@ -2,19 +2,13 @@
 import Layout from '../layouts/Layout.astro';
 import { mammutProducts } from '../data/mammutProducts';
 ---
-<Layout
-  title="Mammut Jacks | Heavy Lifts Canada"
-  description="Browse verified Mammut jack models with conservative spec language and a quote-first buying flow for Canadian industrial buyers."
->
+<Layout title="Mammut Jacks | Heavy Lifts Canada" description="Browse verified Mammut jack models with conservative spec language and a quote-first buying flow for Canadian industrial buyers.">
   <section class="hero">
     <div class="hero-grid">
       <div>
         <p class="eyebrow">Verified Mammut category</p>
         <h1>Mammut Jacks for High-Capacity Lifting</h1>
-        <p>
-          Compare verified Mammut jack models and move directly into quote support once you know the
-          likely fit.
-        </p>
+        <p>Compare verified Mammut jack models and move directly into quote support once you know the likely fit.</p>
         <div class="actions">
           <a class="btn btn-primary" href="/request-a-quote?category=mammut-jacks">Request a Quote</a>
           <a class="btn btn-secondary" href="#models">View Mammut Models</a>
@@ -32,34 +26,31 @@ import { mammutProducts } from '../data/mammutProducts';
     </div>
   </section>
 
-  <section class="section">
-    <h2>Mammut Quick Comparison</h2>
-    <div class="path-grid">
-      <div class="path-card"><h3>Low Starting Height</h3><p>Best when clearance is tight and low-entry lifting matters most.</p></div>
-      <div class="path-card"><h3>Higher Lift Range</h3><p>Best when additional vertical reach is more important than minimum height.</p></div>
-      <div class="path-card"><h3>Higher Capacity</h3><p>Best when the application pushes into the upper tonnage requirements.</p></div>
-    </div>
-  </section>
-
   <section class="section" id="models">
     <h2>Verified Mammut Models</h2>
-    <p class="lead">Use model, capacity, and height range to narrow the right starting point.</p>
+    <p class="lead">Click any product card to open a cleaner detail view, or quote directly from the card.</p>
     <div class="grid">
       {mammutProducts.map((product) => (
         <div class="card product-card">
-          <p class="product-model">Model {product.model}</p>
-          <h3>{product.title}</h3>
-          <p>{product.summary}</p>
-          <ul class="spec-list">
-            <li><strong>Capacity:</strong> {product.capacity}</li>
-            <li><strong>Min Height:</strong> {product.minHeight}</li>
-            <li><strong>Max Height:</strong> {product.maxHeight}</li>
-            <li><strong>Stroke:</strong> {product.stroke}</li>
-            <li><strong>Weight:</strong> {product.weight}</li>
-          </ul>
-          <div class="product-actions">
-            <a class="btn btn-primary" href={`/request-a-quote?category=mammut-jacks&product=${product.model}`}>Quote {product.model}</a>
-            <a class="inline-link" href="/request-a-quote?category=mammut-jacks">Quote this category</a>
+          <a class="product-card-link" href={`/mammut-jacks/${product.slug}`}>
+            <img class="product-card-image" src={product.image} alt={product.title} />
+            <div class="product-card-body">
+              <p class="product-model">Model {product.model}</p>
+              <h3>{product.title}</h3>
+              <p>{product.summary}</p>
+              <p class="product-best-for"><strong>Best for:</strong> {product.bestFor}</p>
+              <ul class="spec-list">
+                <li><strong>Capacity:</strong> {product.capacity}</li>
+                <li><strong>Min Height:</strong> {product.minHeight}</li>
+                <li><strong>Max Height:</strong> {product.maxHeight}</li>
+              </ul>
+            </div>
+          </a>
+          <div class="product-card-body">
+            <div class="product-actions">
+              <a class="btn btn-primary" href={`/request-a-quote?category=mammut-jacks&product=${product.model}`}>Quote {product.model}</a>
+              <a class="inline-link" href={`/mammut-jacks/${product.slug}`}>View details</a>
+            </div>
           </div>
         </div>
       ))}

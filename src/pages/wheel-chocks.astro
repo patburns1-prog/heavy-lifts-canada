@@ -2,19 +2,13 @@
 import Layout from '../layouts/Layout.astro';
 import { wheelChockProducts } from '../data/wheelChockProducts';
 ---
-<Layout
-  title="Wheel Chocks | Heavy Lifts Canada"
-  description="Verified ESCO wheel chock models for heavy-duty shop, fleet, field, mining, and industrial applications with quote-first support from Heavy Lifts Canada."
->
+<Layout title="Wheel Chocks | Heavy Lifts Canada" description="Verified ESCO wheel chock models for heavy-duty shop, fleet, field, mining, and industrial applications with quote-first support from Heavy Lifts Canada.">
   <section class="hero">
     <div class="hero-grid">
       <div>
         <p class="eyebrow">Verified ESCO category</p>
         <h1>Wheel Chocks for Heavy-Duty Vehicle Positioning</h1>
-        <p>
-          Start with tire diameter, GVW, and environment, then move into the RFQ flow with the right
-          context already in place.
-        </p>
+        <p>Start with tire diameter, GVW, and environment, then move into the RFQ flow with the right context already in place.</p>
         <div class="actions">
           <a class="btn btn-primary" href="/request-a-quote?category=wheel-chocks">Request a Quote</a>
           <a class="btn btn-secondary" href="#models">View Wheel Chock Models</a>
@@ -32,34 +26,31 @@ import { wheelChockProducts } from '../data/wheelChockProducts';
     </div>
   </section>
 
-  <section class="section">
-    <h2>Wheel Chock Quick Comparison</h2>
-    <div class="path-grid">
-      <div class="path-card"><h3>Smaller Vehicle Range</h3><p>Best when the tire OD and GVW stay in the lighter-duty range.</p></div>
-      <div class="path-card"><h3>Heavy Equipment Range</h3><p>Best when larger tires and heavier equipment drive the selection.</p></div>
-      <div class="path-card"><h3>Rubber vs Polyurethane</h3><p>Material choice depends on handling preference, environment, and use case.</p></div>
-    </div>
-  </section>
-
   <section class="section" id="models">
     <h2>Verified Wheel Chock Models</h2>
-    <p class="lead">Use tire size, GVW guide range, and material to narrow the best fit.</p>
+    <p class="lead">Click any card for a cleaner detail view, or quote directly from the model card.</p>
     <div class="grid">
       {wheelChockProducts.map((product) => (
         <div class="card product-card">
-          <p class="product-model">Model {product.model}</p>
-          <h3>{product.material} Wheel Chock</h3>
-          <p>{product.summary}</p>
-          <ul class="spec-list">
-            <li><strong>GVW Guide:</strong> {product.gvwCapacity}</li>
-            <li><strong>Tire Size:</strong> {product.tireSize}</li>
-            <li><strong>Dimensions:</strong> {product.dimensions}</li>
-            <li><strong>Weight:</strong> {product.weight}</li>
-            <li><strong>Material:</strong> {product.material}</li>
-          </ul>
-          <div class="product-actions">
-            <a class="btn btn-primary" href={`/request-a-quote?category=wheel-chocks&product=${product.model}`}>Quote {product.model}</a>
-            <a class="inline-link" href="/request-a-quote?category=wheel-chocks">Quote this category</a>
+          <a class="product-card-link" href={`/wheel-chocks/${product.model}`}>
+            <img class="product-card-image" src={product.image} alt={`Wheel chock model ${product.model}`} />
+            <div class="product-card-body">
+              <p class="product-model">Model {product.model}</p>
+              <h3>{product.material} Wheel Chock</h3>
+              <p>{product.summary}</p>
+              <p class="product-best-for"><strong>Best for:</strong> {product.bestFor}</p>
+              <ul class="spec-list">
+                <li><strong>GVW Guide:</strong> {product.gvwCapacity}</li>
+                <li><strong>Tire Size:</strong> {product.tireSize}</li>
+                <li><strong>Material:</strong> {product.material}</li>
+              </ul>
+            </div>
+          </a>
+          <div class="product-card-body">
+            <div class="product-actions">
+              <a class="btn btn-primary" href={`/request-a-quote?category=wheel-chocks&product=${product.model}`}>Quote {product.model}</a>
+              <a class="inline-link" href={`/wheel-chocks/${product.model}`}>View details</a>
+            </div>
           </div>
         </div>
       ))}

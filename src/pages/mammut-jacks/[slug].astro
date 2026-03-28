@@ -1,0 +1,46 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { mammutProducts } from '../../data/mammutProducts';
+
+export function getStaticPaths() {
+  return mammutProducts.map((product) => ({ params: { slug: product.slug }, props: { product } }));
+}
+
+const { product } = Astro.props;
+---
+<Layout title={`${product.model} | Mammut Jacks | Heavy Lifts Canada`} description={product.summary}>
+  <section class="hero">
+    <div class="hero-grid">
+      <div>
+        <p class="eyebrow">Mammut product details</p>
+        <h1>{product.title}</h1>
+        <p>{product.summary}</p>
+        <div class="actions">
+          <a class="btn btn-primary" href={`/request-a-quote?category=mammut-jacks&product=${product.model}`}>Quote {product.model}</a>
+          <a class="btn btn-secondary" href="/mammut-jacks">Back to Mammut Jacks</a>
+        </div>
+      </div>
+      <div class="proof-panel">
+        <img class="product-card-image" src={product.image} alt={product.title} />
+      </div>
+    </div>
+  </section>
+  <section class="section split">
+    <div class="band">
+      <h2>Verified Specs</h2>
+      <ul class="spec-list">
+        <li><strong>Model:</strong> {product.model}</li>
+        <li><strong>Capacity:</strong> {product.capacity}</li>
+        <li><strong>Minimum Height:</strong> {product.minHeight}</li>
+        <li><strong>Maximum Height:</strong> {product.maxHeight}</li>
+        <li><strong>Stroke:</strong> {product.stroke}</li>
+        <li><strong>Weight:</strong> {product.weight}</li>
+      </ul>
+    </div>
+    <div class="band">
+      <h2>Best Fit</h2>
+      <p class="lead">{product.bestFor}</p>
+      <p class="lead">If this looks close to the application, move directly into the RFQ flow with the model already selected.</p>
+    </div>
+  </section>
+</Layout>

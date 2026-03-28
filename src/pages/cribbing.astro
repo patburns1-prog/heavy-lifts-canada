@@ -2,19 +2,13 @@
 import Layout from '../layouts/Layout.astro';
 import { cribbingProducts } from '../data/cribbingProducts';
 ---
-<Layout
-  title="Cribbing | Heavy Lifts Canada"
-  description="Verified ESCO cribbing and support-system families for heavy-duty stabilization and support applications, with quote-first support from Heavy Lifts Canada."
->
+<Layout title="Cribbing | Heavy Lifts Canada" description="Verified ESCO cribbing and support-system families for heavy-duty stabilization and support applications, with quote-first support from Heavy Lifts Canada.">
   <section class="hero">
     <div class="hero-grid">
       <div>
         <p class="eyebrow">Verified ESCO category</p>
         <h1>Cribbing for Stabilization and Support Applications</h1>
-        <p>
-          Start with load, support need, height, and surface conditions, then move into the quote
-          flow with the right category context.
-        </p>
+        <p>Start with load, support need, height, and surface conditions, then move into the quote flow with the right category context.</p>
         <div class="actions">
           <a class="btn btn-primary" href="/request-a-quote?category=cribbing">Request a Quote</a>
           <a class="btn btn-secondary" href="#families">View Cribbing Families</a>
@@ -32,33 +26,30 @@ import { cribbingProducts } from '../data/cribbingProducts';
     </div>
   </section>
 
-  <section class="section">
-    <h2>Cribbing Quick Comparison</h2>
-    <div class="path-grid">
-      <div class="path-card"><h3>Steel Stands</h3><p>Best when stackable steel support and cylinder/outrigger support is the priority.</p></div>
-      <div class="path-card"><h3>CriBLOK System</h3><p>Best when a structured locking cribbing system and kit logic are the better fit.</p></div>
-      <div class="path-card"><h3>Support Plates</h3><p>Best when the surface condition or stability foundation is the main issue to solve.</p></div>
-    </div>
-  </section>
-
   <section class="section" id="families">
     <h2>Verified Cribbing & Support Families</h2>
-    <p class="lead">Use support type, height range, and application needs to narrow the right direction.</p>
+    <p class="lead">Click any card to open a cleaner detail page, or quote directly from the family card.</p>
     <div class="grid">
       {cribbingProducts.map((product) => (
         <div class="card product-card">
-          <p class="product-model">Model {product.model}</p>
-          <h3>{product.title}</h3>
-          <p>{product.summary}</p>
-          <ul class="spec-list">
-            <li><strong>Capacity:</strong> {product.capacity}</li>
-            {product.dimensions && <li><strong>Dimensions:</strong> {product.dimensions}</li>}
-            {product.weight && <li><strong>Weight:</strong> {product.weight}</li>}
-            {product.kitRange && <li><strong>Kit Height Range:</strong> {product.kitRange}</li>}
-          </ul>
-          <div class="product-actions">
-            <a class="btn btn-primary" href={`/request-a-quote?category=cribbing&product=${encodeURIComponent(product.model)}`}>Quote this family</a>
-            <a class="inline-link" href="/request-a-quote?category=cribbing">Quote this category</a>
+          <a class="product-card-link" href={`/cribbing/${product.slug}`}>
+            <img class="product-card-image" src={product.image} alt={product.title} />
+            <div class="product-card-body">
+              <p class="product-model">Model {product.model}</p>
+              <h3>{product.title}</h3>
+              <p>{product.summary}</p>
+              <p class="product-best-for"><strong>Best for:</strong> {product.bestFor}</p>
+              <ul class="spec-list">
+                <li><strong>Capacity:</strong> {product.capacity}</li>
+                {product.kitRange && <li><strong>Kit Range:</strong> {product.kitRange}</li>}
+              </ul>
+            </div>
+          </a>
+          <div class="product-card-body">
+            <div class="product-actions">
+              <a class="btn btn-primary" href={`/request-a-quote?category=cribbing&product=${encodeURIComponent(product.model)}`}>Quote this family</a>
+              <a class="inline-link" href={`/cribbing/${product.slug}`}>View details</a>
+            </div>
           </div>
         </div>
       ))}

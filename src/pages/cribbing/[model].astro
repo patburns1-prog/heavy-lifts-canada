@@ -1,0 +1,45 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { cribbingProducts } from '../../data/cribbingProducts';
+
+export function getStaticPaths() {
+  return cribbingProducts.map((product) => ({ params: { model: product.slug }, props: { product } }));
+}
+
+const { product } = Astro.props;
+---
+<Layout title={`${product.title} | Cribbing | Heavy Lifts Canada`} description={product.summary}>
+  <section class="hero">
+    <div class="hero-grid">
+      <div>
+        <p class="eyebrow">Cribbing details</p>
+        <h1>{product.title}</h1>
+        <p>{product.summary}</p>
+        <div class="actions">
+          <a class="btn btn-primary" href={`/request-a-quote?category=cribbing&product=${encodeURIComponent(product.model)}`}>Quote this family</a>
+          <a class="btn btn-secondary" href="/cribbing">Back to Cribbing</a>
+        </div>
+      </div>
+      <div class="proof-panel">
+        <img class="product-card-image" src={product.image} alt={product.title} />
+      </div>
+    </div>
+  </section>
+  <section class="section split">
+    <div class="band">
+      <h2>Verified Specs</h2>
+      <ul class="spec-list">
+        <li><strong>Model:</strong> {product.model}</li>
+        <li><strong>Capacity:</strong> {product.capacity}</li>
+        {product.dimensions && <li><strong>Dimensions:</strong> {product.dimensions}</li>}
+        {product.weight && <li><strong>Weight:</strong> {product.weight}</li>}
+        {product.kitRange && <li><strong>Kit Range:</strong> {product.kitRange}</li>}
+      </ul>
+    </div>
+    <div class="band">
+      <h2>Best Fit</h2>
+      <p class="lead">{product.bestFor}</p>
+      <p class="lead">Use this detail page when you want a cleaner explanation before sending the RFQ.</p>
+    </div>
+  </section>
+</Layout>

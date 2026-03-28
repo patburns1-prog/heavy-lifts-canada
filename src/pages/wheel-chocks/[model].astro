@@ -1,0 +1,46 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { wheelChockProducts } from '../../data/wheelChockProducts';
+
+export function getStaticPaths() {
+  return wheelChockProducts.map((product) => ({ params: { model: product.model }, props: { product } }));
+}
+
+const { product } = Astro.props;
+---
+<Layout title={`${product.model} | Wheel Chocks | Heavy Lifts Canada`} description={product.summary}>
+  <section class="hero">
+    <div class="hero-grid">
+      <div>
+        <p class="eyebrow">Wheel chock details</p>
+        <h1>Model {product.model}</h1>
+        <p>{product.summary}</p>
+        <div class="actions">
+          <a class="btn btn-primary" href={`/request-a-quote?category=wheel-chocks&product=${product.model}`}>Quote {product.model}</a>
+          <a class="btn btn-secondary" href="/wheel-chocks">Back to Wheel Chocks</a>
+        </div>
+      </div>
+      <div class="proof-panel">
+        <img class="product-card-image" src={product.image} alt={`Wheel chock model ${product.model}`} />
+      </div>
+    </div>
+  </section>
+  <section class="section split">
+    <div class="band">
+      <h2>Verified Specs</h2>
+      <ul class="spec-list">
+        <li><strong>Model:</strong> {product.model}</li>
+        <li><strong>Material:</strong> {product.material}</li>
+        <li><strong>GVW Guide:</strong> {product.gvwCapacity}</li>
+        <li><strong>Tire Size:</strong> {product.tireSize}</li>
+        <li><strong>Dimensions:</strong> {product.dimensions}</li>
+        <li><strong>Weight:</strong> {product.weight}</li>
+      </ul>
+    </div>
+    <div class="band">
+      <h2>Best Fit</h2>
+      <p class="lead">{product.bestFor}</p>
+      <p class="lead">Use this model page when you want a cleaner handoff from selection into quote request.</p>
+    </div>
+  </section>
+</Layout>

@@ -8,6 +8,8 @@ export type MammutProduct = {
   stroke: string;
   weight: string;
   summary: string;
+  image: string;
+  bestFor: string;
 };
 
 export const mammutProducts: MammutProduct[] = [
@@ -20,7 +22,9 @@ export const mammutProducts: MammutProduct[] = [
     maxHeight: '33.4 in | 848 mm',
     stroke: '19.9 in | 506 mm',
     weight: '359 lb | 163 kg',
-    summary: '3-stage Mammut jack designed for low lifting heights without giving up high-capacity performance.'
+    summary: '3-stage Mammut jack designed for low lifting heights without giving up high-capacity performance.',
+    image: '/images/mammut-91000.png',
+    bestFor: 'Tight-clearance lifting where high capacity still matters.'
   },
   {
     model: '91003',
@@ -31,7 +35,9 @@ export const mammutProducts: MammutProduct[] = [
     maxHeight: '33 in | 839 mm',
     stroke: '16.5 in | 420 mm',
     weight: '381 lb | 173 kg',
-    summary: '2-stage Mammut jack built for additional lift height while maintaining high tonnage capability.'
+    summary: '2-stage Mammut jack built for additional lift height while maintaining high tonnage capability.',
+    image: '/images/mammut-jacks.png',
+    bestFor: 'Buyers balancing strong tonnage with more lift height.'
   },
   {
     model: '91004',
@@ -42,7 +48,9 @@ export const mammutProducts: MammutProduct[] = [
     maxHeight: '46 in | 1170 mm',
     stroke: '17.5 in | 445 mm',
     weight: '626 lb | 284 kg',
-    summary: '110 ton high-lift Mammut jack for applications that need more vertical reach without extensions.'
+    summary: '110 ton high-lift Mammut jack for applications that need more vertical reach without extensions.',
+    image: '/images/mammut-jacks.png',
+    bestFor: 'Higher-reach lifting applications where vertical travel is key.'
   },
   {
     model: '91043',
@@ -53,7 +61,9 @@ export const mammutProducts: MammutProduct[] = [
     maxHeight: '23.7 in | 602 mm',
     stroke: '8 in | 203 mm',
     weight: '370 lb | 168 kg',
-    summary: 'Low-profile 110 ton Mammut jack built for high-tonnage lifting where clearance is tight.'
+    summary: 'Low-profile 110 ton Mammut jack built for high-tonnage lifting where clearance is tight.',
+    image: '/images/mammut-jacks.png',
+    bestFor: 'High-tonnage work with tighter starting clearance.'
   },
   {
     model: '91005',
@@ -64,7 +74,9 @@ export const mammutProducts: MammutProduct[] = [
     maxHeight: '57.2 in | 1455 mm',
     stroke: '21.8 in | 554 mm',
     weight: '831 lb | 377 kg',
-    summary: 'High-capacity Mammut jack engineered for heavier equipment and larger service work.'
+    summary: 'High-capacity Mammut jack engineered for heavier equipment and larger service work.',
+    image: '/images/mammut-jacks.png',
+    bestFor: 'Heavier equipment service where more capacity is required.'
   },
   {
     model: '91008',
@@ -75,6 +87,8 @@ export const mammutProducts: MammutProduct[] = [
     maxHeight: '39.3 in | 1000 mm',
     stroke: '13.7 in | 350 mm',
     weight: '848 lb | 385 kg',
-    summary: '220 ton Mammut air hydraulic jack built for the heaviest lifting demands.'
+    summary: '220 ton Mammut air hydraulic jack built for the heaviest lifting demands.',
+    image: '/images/mammut-jacks.png',
+    bestFor: 'Extreme heavy-duty lifting demands and upper-end tonnage needs.'
   }
 ];
