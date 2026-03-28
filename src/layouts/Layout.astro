@@ -1,0 +1,97 @@
+---
+import '../styles/global.css';
+import { siteConfig } from '../data/siteConfig';
+const { title = 'Heavy Lifts Canada', description = 'Heavy-duty lifting and support equipment for serious industrial work.' } = Astro.props;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+  </head>
+  <body>
+    <div class="topbar">
+      <div class="container topbar-inner">
+        <span>{siteConfig.phone}</span>
+        <span>{siteConfig.email}</span>
+        <span>{siteConfig.address}</span>
+        <span>Ships Across Canada</span>
+      </div>
+    </div>
+    <header class="header">
+      <div class="container nav">
+        <a class="brand" href="/" aria-label={`${siteConfig.brandName} home`}>
+          HEAVY LIFTS <span>CANADA</span>
+        </a>
+        <nav class="navlinks" aria-label="Primary">
+          <a href="/">Home</a>
+          <a href="/about">About</a>
+          <a href="/mammut-jacks">Mammut Jacks</a>
+          <a href="/wheel-chocks">Wheel Chocks</a>
+          <a href="/cribbing">Cribbing</a>
+          <a href="/resources">Resources</a>
+          <a href="/request-a-quote">Request a Quote</a>
+          <a href="/faq">FAQ</a>
+          <a href="/contact">Contact</a>
+        </nav>
+      </div>
+    </header>
+    <main class="container">
+      <slot />
+    </main>
+    <section class="site-cta">
+      <div class="container site-cta-inner">
+        <div>
+          <p class="site-cta-kicker">Need pricing or help choosing the right setup?</p>
+          <h2>Send the model, category, or job details and start the quote conversation.</h2>
+          <p>
+            If you know the exact model, send it. If not, send the application details and we can
+            narrow the right direction from there.
+          </p>
+        </div>
+        <div class="actions">
+          <a class="btn btn-primary" href="/request-a-quote">Request a Quote</a>
+          <a class="btn btn-secondary" href="/contact">Contact Us</a>
+        </div>
+      </div>
+    </section>
+    <footer class="footer">
+      <div class="container footer-grid footer-grid-4">
+        <div>
+          <p class="footer-title">{siteConfig.brandName}</p>
+          <p>Heavy-duty lifting and support equipment for serious industrial work.</p>
+          <p><strong>Location:</strong> {siteConfig.shortLocation}</p>
+          <p><strong>Hours:</strong> {siteConfig.businessHours}</p>
+        </div>
+        <div>
+          <p class="footer-title">Categories</p>
+          <ul class="footer-list">
+            <li><a href="/mammut-jacks">Mammut Jacks</a></li>
+            <li><a href="/wheel-chocks">Wheel Chocks</a></li>
+            <li><a href="/cribbing">Cribbing</a></li>
+            <li><a href="/resources">Resources</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer-title">Buyer Support</p>
+          <ul class="footer-list">
+            <li><a href="/request-a-quote">Request a Quote</a></li>
+            <li><a href="/faq">FAQ</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/contact">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer-title">Contact</p>
+          <p><a href={`tel:${siteConfig.phoneHref}`}>{siteConfig.phone}</a></p>
+          <p><a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a></p>
+          <p>{siteConfig.address}</p>
+          <p>Ships across Canada</p>
+          <p>{siteConfig.responseWindow}</p>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

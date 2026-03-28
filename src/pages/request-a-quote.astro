@@ -1,0 +1,210 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { siteConfig } from '../data/siteConfig';
+
+const category = Astro.url.searchParams.get('category') ?? '';
+const product = Astro.url.searchParams.get('product') ?? '';
+const path = Astro.url.searchParams.get('path') ?? '';
+
+const contextLine = [category && `Category: ${category}`, product && `Product/Model: ${product}`, path && `Entry Path: ${path}`]
+  .filter(Boolean)
+  .join(' | ');
+
+const subjectBase = product
+  ? `Quote Request — ${product}`
+  : category
+    ? `Quote Request — ${category}`
+    : 'Heavy Lifts Canada Quote Request';
+---
+<Layout
+  title="Request a Quote | Heavy Lifts Canada"
+  description="Send your model list, lift requirements, and application details to Heavy Lifts Canada for quote support and product guidance."
+>
+  <section class="hero">
+    <div class="hero-grid">
+      <div>
+        <p class="eyebrow">Quote-first workflow</p>
+        <h1>Request a Quote</h1>
+        <p>
+          Use the form below to build a cleaner quote request without relying only on your email
+          client. If needed, you can still email or call directly.
+        </p>
+        {contextLine && <p class="lead"><strong>Current selection:</strong> {contextLine}</p>}
+        <div class="actions">
+          <a class="btn btn-secondary" href={`mailto:${siteConfig.email}?subject=${encodeURIComponent(subjectBase)}`}>Email Instead</a>
+          <a class="btn btn-secondary" href={`tel:${siteConfig.phoneHref}`}>Call {siteConfig.phone}</a>
+        </div>
+      </div>
+      <aside class="proof-panel">
+        <h3>Best RFQ Inputs</h3>
+        <ul class="proof-list">
+          <li>Model or product family</li>
+          <li>Quantity needed</li>
+          <li>Equipment or application type</li>
+          <li>Height, load, tire, or support details</li>
+          <li>Timeline or urgency</li>
+        </ul>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section split">
+    <div class="band">
+      <h2>Submit Your Quote Request</h2>
+      <form class="rfq-form" id="rfq-form">
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input id="name" name="name" placeholder="Your name" />
+          </div>
+          <div class="form-group">
+            <label for="company">Company</label>
+            <input id="company" name="company" placeholder="Company name" />
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" placeholder="you@example.com" />
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone</label>
+            <input id="phone" name="phone" placeholder="Phone number" />
+          </div>
+          <div class="form-group">
+            <label for="city">City / Province</label>
+            <input id="city" name="city" placeholder="City / Province" />
+          </div>
+          <div class="form-group">
+            <label for="category">Category</label>
+            <select id="category" name="category">
+              <option value="">Select a category</option>
+              <option value="mammut-jacks" selected={category === 'mammut-jacks'}>Mammut Jacks</option>
+              <option value="wheel-chocks" selected={category === 'wheel-chocks'}>Wheel Chocks</option>
+              <option value="cribbing" selected={category === 'cribbing'}>Cribbing</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="product">Product / Model</label>
+            <input id="product" name="product" value={product} placeholder="Model or family" />
+          </div>
+          <div class="form-group">
+            <label for="quantity">Quantity</label>
+            <input id="quantity" name="quantity" placeholder="How many?" />
+          </div>
+          <div class="form-group">
+            <label for="timeline">Timeline / Urgency</label>
+            <input id="timeline" name="timeline" placeholder="Immediate, this week, planned job..." />
+          </div>
+          <div class="form-group form-group-full">
+            <label for="application">Application Details</label>
+            <textarea id="application" name="application" placeholder="Tell us about the equipment, lift/load/tire/support requirements, environment, and anything else that affects fit."></textarea>
+          </div>
+        </div>
+        <p class="form-note">
+          This form now builds the quote request directly from your inputs and prepares the outbound
+          message for submission.
+        </p>
+        <div class="actions">
+          <button class="btn btn-primary" type="submit">Build Quote Email</button>
+          <button class="btn btn-secondary" type="button" id="copy-rfq">Copy Request Text</button>
+        </div>
+      </form>
+    </div>
+    <div class="band band-dark">
+      <h2>Quote Request Preview</h2>
+      <p class="lead">This preview updates from the form and can be copied or sent by email.</p>
+      <div class="form-group">
+        <label for="rfq-preview">Prepared request</label>
+        <textarea id="rfq-preview" readonly></textarea>
+      </div>
+      <ul class="spec-list">
+        <li><strong>Email:</strong> <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a></li>
+        <li><strong>Phone:</strong> <a href={`tel:${siteConfig.phoneHref}`}>{siteConfig.phone}</a></li>
+        <li><strong>Location:</strong> {siteConfig.address}</li>
+        <li><strong>Hours:</strong> {siteConfig.businessHours}</li>
+        <li><strong>Coverage:</strong> Ships across Canada</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Category Quote Shortcuts</h2>
+    <div class="path-grid">
+      <div class="path-card">
+        <h3>Quote Mammut Jacks</h3>
+        <p>Use this when you already know you are in the Mammut category.</p>
+        <a class="inline-link" href="/request-a-quote?category=mammut-jacks">Open Mammut RFQ</a>
+      </div>
+      <div class="path-card">
+        <h3>Quote Wheel Chocks</h3>
+        <p>Use this when tire diameter, GVW, and operating surface are the main factors.</p>
+        <a class="inline-link" href="/request-a-quote?category=wheel-chocks">Open Wheel Chock RFQ</a>
+      </div>
+      <div class="path-card">
+        <h3>Quote Cribbing</h3>
+        <p>Use this when support, stabilization, height, or surface conditions are the main variables.</p>
+        <a class="inline-link" href="/request-a-quote?category=cribbing">Open Cribbing RFQ</a>
+      </div>
+    </div>
+  </section>
+
+  <script is:inline define:vars={{ email: siteConfig.email, subjectBase, contextLine }}>
+    const form = document.getElementById('rfq-form');
+    const preview = document.getElementById('rfq-preview');
+    const copyButton = document.getElementById('copy-rfq');
+
+    const buildMessage = () => {
+      const data = new FormData(form);
+      const lines = [
+        'Hello Heavy Lifts Canada,',
+        '',
+        contextLine ? `Current Selection: ${contextLine}` : '',
+        `Name: ${data.get('name') || ''}`,
+        `Company: ${data.get('company') || ''}`,
+        `Email: ${data.get('email') || ''}`,
+        `Phone: ${data.get('phone') || ''}`,
+        `City / Province: ${data.get('city') || ''}`,
+        `Category: ${data.get('category') || ''}`,
+        `Product / Model: ${data.get('product') || ''}`,
+        `Quantity: ${data.get('quantity') || ''}`,
+        `Timeline / Urgency: ${data.get('timeline') || ''}`,
+        '',
+        'Application Details:',
+        `${data.get('application') || ''}`,
+        '',
+        'Thanks,'
+      ].filter(Boolean);
+
+      return lines.join('\n');
+    };
+
+    const updatePreview = () => {
+      preview.value = buildMessage();
+    };
+
+    form?.addEventListener('input', updatePreview);
+    form?.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const body = encodeURIComponent(buildMessage());
+      const subject = encodeURIComponent(subjectBase);
+      window.location.href = `mailto:${email}?subject=${subject}&body=${body}`;
+    });
+
+    copyButton?.addEventListener('click', async () => {
+      updatePreview();
+      try {
+        await navigator.clipboard.writeText(preview.value);
+        copyButton.textContent = 'Copied';
+        setTimeout(() => {
+          copyButton.textContent = 'Copy Request Text';
+        }, 1500);
+      } catch {
+        copyButton.textContent = 'Copy failed';
+        setTimeout(() => {
+          copyButton.textContent = 'Copy Request Text';
+        }, 1500);
+      }
+    });
+
+    updatePreview();
+  </script>
+</Layout>

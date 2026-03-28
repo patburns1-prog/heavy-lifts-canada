@@ -1,0 +1,57 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { siteConfig } from '../data/siteConfig';
+---
+<Layout
+  title="Contact | Heavy Lifts Canada"
+  description="Contact Heavy Lifts Canada in Fort McMurray for quote support, product questions, and help choosing the right lifting equipment."
+>
+  <section class="hero">
+    <div class="hero-grid">
+      <div>
+        <p class="eyebrow">Direct contact</p>
+        <h1>Contact Heavy Lifts Canada</h1>
+        <p>
+          Reach out for quote support, product questions, and help narrowing the right setup for
+          your application.
+        </p>
+        <div class="actions">
+          <a class="btn btn-primary" href={`mailto:${siteConfig.email}`}>Email {siteConfig.email}</a>
+          <a class="btn btn-secondary" href={`tel:${siteConfig.phoneHref}`}>Call {siteConfig.phone}</a>
+        </div>
+      </div>
+      <aside class="proof-panel">
+        <h3>Business Identity</h3>
+        <ul class="proof-list">
+          <li>{siteConfig.shortLocation}</li>
+          <li>{siteConfig.businessHours}</li>
+          <li>{siteConfig.responseWindow}</li>
+          <li>Industrial quote support across Canada</li>
+        </ul>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section split">
+    <div class="band">
+      <h2>Business contact</h2>
+      <ul class="spec-list">
+        <li><strong>Phone:</strong> <a href={`tel:${siteConfig.phoneHref}`}>{siteConfig.phone}</a></li>
+        <li><strong>Email:</strong> <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a></li>
+        <li><strong>Address:</strong> {siteConfig.address}</li>
+        <li><strong>Hours:</strong> {siteConfig.businessHours}</li>
+        <li><strong>Coverage:</strong> Ships across Canada</li>
+      </ul>
+    </div>
+    <div class="band band-dark">
+      <h2>Best reasons to contact us</h2>
+      <ul class="spec-list">
+        <li>Quote requests for Mammut jacks and related equipment</li>
+        <li>Help choosing the right lift range or setup</li>
+        <li>Wheel chock selection based on GVW and tire size</li>
+        <li>Cribbing and support-system guidance</li>
+        <li>Document and product-reference requests</li>
+      </ul>
+    </div>
+  </section>
+</Layout>

@@ -1,0 +1,76 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { siteConfig } from '../data/siteConfig';
+---
+<Layout
+  title="About | Heavy Lifts Canada"
+  description="Learn about Heavy Lifts Canada, its Fort McMurray roots, industrial focus, and quote-first support approach."
+>
+  <section class="hero">
+    <div class="hero-grid">
+      <div>
+        <p class="eyebrow">About the business</p>
+        <h1>Local Support for Serious Industrial Equipment Needs</h1>
+        <p>
+          {siteConfig.brandName} is a Fort McMurray-based heavy-duty equipment supply business being
+          built around practical product guidance, quote-first support, and cleaner buying paths for
+          industrial customers.
+        </p>
+        <div class="actions">
+          <a class="btn btn-primary" href="/request-a-quote">Request a Quote</a>
+          <a class="btn btn-secondary" href="/contact">Contact Heavy Lifts Canada</a>
+        </div>
+      </div>
+      <aside class="proof-panel">
+        <h3>Core Positioning</h3>
+        <ul class="proof-list">
+          <li>{siteConfig.shortLocation}</li>
+          <li>Ships across Canada</li>
+          <li>Certified Full Aboriginal Member with NAABA</li>
+          <li>Built for industrial buyers</li>
+        </ul>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section split">
+    <div class="band">
+      <h2>What the business is built around</h2>
+      <ul class="spec-list">
+        <li>Heavy-duty lifting and support equipment</li>
+        <li>Quote-first buying support</li>
+        <li>Application-based product guidance</li>
+        <li>Practical support for serious work environments</li>
+      </ul>
+    </div>
+    <div class="band">
+      <h2>Who it is for</h2>
+      <ul class="spec-list">
+        <li>Heavy-duty repair shops</li>
+        <li>Commercial fleet operations</li>
+        <li>Mining and oilfield buyers</li>
+        <li>Municipal and industrial teams</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section split">
+    <div class="band">
+      <h2>Operational support</h2>
+      <ul class="spec-list">
+        <li><strong>Location:</strong> {siteConfig.shortLocation}</li>
+        <li><strong>Hours:</strong> {siteConfig.businessHours}</li>
+        <li><strong>Response:</strong> {siteConfig.responseWindow}</li>
+        <li><strong>Support model:</strong> Quote-first and application-led</li>
+      </ul>
+    </div>
+    <div class="band band-dark">
+      <h2>Why quote-first matters here</h2>
+      <p class="lead">
+        Heavy-duty equipment selection is usually tied to the application, not just the part number.
+        A quote-first workflow makes more sense when load, lift, tire, support, and operating
+        environment all affect the right answer.
+      </p>
+    </div>
+  </section>
+</Layout>

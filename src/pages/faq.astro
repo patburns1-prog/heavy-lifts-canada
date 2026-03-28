@@ -1,0 +1,110 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { siteConfig } from '../data/siteConfig';
+---
+<Layout
+  title="FAQ | Heavy Lifts Canada"
+  description="Frequently asked questions about quote requests, product selection, shipping, and industrial equipment support from Heavy Lifts Canada."
+>
+  <section class="hero">
+    <div class="hero-grid">
+      <div>
+        <p class="eyebrow">Buyer questions</p>
+        <h1>Frequently Asked Questions</h1>
+        <p>
+          This page covers the common questions buyers ask before requesting a quote for Mammut
+          jacks, ESCO wheel chocks, cribbing, and related support equipment.
+        </p>
+        <div class="actions">
+          <a class="btn btn-primary" href="/request-a-quote">Request a Quote</a>
+          <a class="btn btn-secondary" href="/contact">Contact Heavy Lifts Canada</a>
+        </div>
+      </div>
+      <aside class="proof-panel">
+        <h3>Fast Answers</h3>
+        <ul class="proof-list">
+          <li>Quote-first buying flow</li>
+          <li>No public online pricing</li>
+          <li>Canada-wide support</li>
+          <li>Application-based guidance</li>
+        </ul>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section split">
+    <div class="band">
+      <h2>Do you list prices online?</h2>
+      <p class="lead">
+        No. This site is built around a quote-first process so requests can be reviewed based on the
+        product, application, quantity, and support requirements involved.
+      </p>
+    </div>
+    <div class="band">
+      <h2>Can I request more than one item at a time?</h2>
+      <p class="lead">
+        Yes. You can send multiple models or product families in a single RFQ and include the
+        quantities and application details for each one.
+      </p>
+    </div>
+  </section>
+
+  <section class="section split">
+    <div class="band">
+      <h2>What helps you quote faster?</h2>
+      <ul class="spec-list">
+        <li>Model number or product family</li>
+        <li>Quantity needed</li>
+        <li>Equipment or vehicle type</li>
+        <li>Lift, load, tire, or support requirements</li>
+        <li>Timeline or urgency</li>
+      </ul>
+    </div>
+    <div class="band">
+      <h2>Do you help if I am not sure what fits?</h2>
+      <p class="lead">
+        Yes. If you do not know the exact model yet, send the problem you are solving and the job
+        conditions. That is often enough to narrow the right starting options.
+      </p>
+    </div>
+  </section>
+
+  <section class="section split">
+    <div class="band">
+      <h2>What product areas are live right now?</h2>
+      <ul class="spec-list">
+        <li>Mammut jacks</li>
+        <li>ESCO wheel chocks</li>
+        <li>ESCO cribbing and support systems</li>
+      </ul>
+    </div>
+    <div class="band">
+      <h2>Where are you based?</h2>
+      <p class="lead">
+        {siteConfig.brandName} is positioned as a Fort McMurray-based business with support and quote
+        coverage for buyers across Canada.
+      </p>
+    </div>
+  </section>
+
+  <section class="section split">
+    <div class="band">
+      <h2>How do I send a request today?</h2>
+      <ul class="spec-list">
+        <li><strong>Email:</strong> <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a></li>
+        <li><strong>Phone:</strong> <a href={`tel:${siteConfig.phoneHref}`}>{siteConfig.phone}</a></li>
+        <li><strong>Quote page:</strong> <a class="inline-link" href="/request-a-quote">Request a Quote</a></li>
+      </ul>
+    </div>
+    <div class="band band-dark">
+      <h2>Still need help?</h2>
+      <p class="lead">
+        If the right starting point is unclear, send the category and the application details first.
+        We can work from there.
+      </p>
+      <div class="actions">
+        <a class="btn btn-primary" href="/request-a-quote">Start Your RFQ</a>
+      </div>
+    </div>
+  </section>
+</Layout>
