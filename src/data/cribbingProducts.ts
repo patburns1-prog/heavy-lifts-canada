@@ -19,7 +19,7 @@ export const cribbingProducts: CribbingProduct[] = [
     capacity: '55 ton capacity per stand',
     dimensions: '3 in., 6 in., and 9 in. stackable stand heights | 12 in. diameter stack',
     summary: 'Stackable steel cribbing stands designed to support hydraulic cylinders or outriggers and used individually or stacked for different working heights.',
-    image: '/images/catalog/page-115.jpg',
+    image: '/images/products/12500.jpg',
     bestFor: 'Stackable steel support where outriggers or cylinders are involved.'
   },
   {
@@ -30,7 +30,7 @@ export const cribbingProducts: CribbingProduct[] = [
     dimensions: '21 x 9 x 5 in. | 53 x 23 x 12.7 cm',
     weight: '33 lbs. | 15 kg',
     summary: 'Single UHMWPE cribbing block built for the ESCO CriBLOK locking cribbing system.',
-    image: '/images/catalog/page-116.jpg',
+    image: '/images/products/12520.jpg',
     bestFor: 'Single-block system expansion or component replacement.'
   },
   {
@@ -41,7 +41,7 @@ export const cribbingProducts: CribbingProduct[] = [
     dimensions: '23 x 23 x 1.5 in. | 58 x 58 x 3.8 cm',
     weight: '25 lbs. | 11 kg',
     summary: 'Patented interlocking bottom plate used as the foundation layer in the CriBLOK cribbing system.',
-    image: '/images/catalog/page-116.jpg',
+    image: '/images/products/12521.jpg',
     bestFor: 'Base-layer support for a structured CriBLOK stack.'
   },
   {
@@ -52,7 +52,7 @@ export const cribbingProducts: CribbingProduct[] = [
     dimensions: '18 x 18 x 1.5 in. | 45 x 45 x 3.8 cm',
     weight: '19 lbs. | 8.6 kg',
     summary: 'Top stability locking plate that finishes the CriBLOK support stack and helps create a stable support surface.',
-    image: '/images/catalog/page-116.jpg',
+    image: '/images/products/12523.jpg',
     bestFor: 'Finishing a stable support surface on a CriBLOK setup.'
   },
   {
@@ -63,7 +63,7 @@ export const cribbingProducts: CribbingProduct[] = [
     weight: '440 lbs. | 200 kg',
     kitRange: 'Minimum height 7.75 in. | 19.7 cm • Maximum height 33 in. | 84 cm',
     summary: 'Medium kit including 12 blocks, 1 top plate, and 1 bottom plate for a complete locking cribbing setup.',
-    image: '/images/catalog/page-116.jpg',
+    image: '/images/products/12531.jpg',
     bestFor: 'Complete medium-height cribbing setups with kit simplicity.'
   },
   {
@@ -74,7 +74,7 @@ export const cribbingProducts: CribbingProduct[] = [
     weight: '836 lbs. | 379 kg',
     kitRange: 'Minimum height 7.75 in. | 19.7 cm • Maximum height 63 in. | 160 cm',
     summary: 'Max kit including 24 blocks, 1 top plate, and 1 bottom plate for higher built-up cribbing configurations.',
-    image: '/images/catalog/page-116.jpg',
+    image: '/images/products/12532.jpg',
     bestFor: 'Higher built-up cribbing applications and larger support height needs.'
   },
   {
@@ -84,7 +84,7 @@ export const cribbingProducts: CribbingProduct[] = [
     capacity: '25 ton to 100 ton range depending on model',
     dimensions: '12 x 12 x 1 in., 18 x 18 x 1 in., and 24 x 24 x 2 in. options',
     summary: 'Support plates designed to create stable, non-slip foundations on soft earth, uneven ground, muddy surfaces, and other unstable working conditions.',
-    image: '/images/catalog/page-115.jpg',
+    image: '/images/products/10751.jpg',
     bestFor: 'Uneven terrain, soft surfaces, and foundation stability problems.'
   },
 ];
