@@ -47,7 +47,7 @@ import { cribbingProducts } from '../data/cribbingProducts';
           </a>
           <div class="product-card-body">
             <div class="product-actions">
-              <a class="btn btn-primary" href={`/request-a-quote?category=cribbing&product=${encodeURIComponent(product.model)}`}>Quote this family</a>
+              <button class="btn btn-primary add-to-quote" type="button" data-category="cribbing" data-product={product.model} data-title={product.title}>Add to Quote</button>
               <a class="inline-link" href={`/cribbing/${product.slug}`}>View details</a>
             </div>
           </div>
@@ -55,4 +55,24 @@ import { cribbingProducts } from '../data/cribbingProducts';
       ))}
     </div>
   </section>
+  <script is:inline>
+    const addButtons = document.querySelectorAll('.add-to-quote');
+    addButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        const items = JSON.parse(localStorage.getItem('quoteItems') || '[]');
+        const nextItem = {
+          category: button.dataset.category,
+          product: button.dataset.product,
+          title: button.dataset.title,
+          quantity: 1,
+        };
+        if (!items.find((item) => item.category === nextItem.category && item.product === nextItem.product)) {
+          items.push(nextItem);
+          localStorage.setItem('quoteItems', JSON.stringify(items));
+          window.dispatchEvent(new Event('quote-items-updated'));
+        }
+        button.textContent = 'Added';
+      });
+    });
+  </script>
 </Layout>

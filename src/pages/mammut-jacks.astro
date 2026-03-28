@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { mammutProducts } from '../data/mammutProducts';
+import { mammutAccessories } from '../data/mammutAccessories';
 ---
 <Layout title="Mammut Jacks | Heavy Lifts Canada" description="Browse verified Mammut jack models with conservative spec language and a quote-first buying flow for Canadian industrial buyers.">
   <section class="hero">
@@ -48,7 +49,7 @@ import { mammutProducts } from '../data/mammutProducts';
           </a>
           <div class="product-card-body">
             <div class="product-actions">
-              <a class="btn btn-primary" href={`/request-a-quote?category=mammut-jacks&product=${product.model}`}>Quote {product.model}</a>
+              <button class="btn btn-primary add-to-quote" type="button" data-category="mammut-jacks" data-product={product.model} data-title={product.title}>Add to Quote</button>
               <a class="inline-link" href={`/mammut-jacks/${product.slug}`}>View details</a>
             </div>
           </div>
@@ -56,4 +57,24 @@ import { mammutProducts } from '../data/mammutProducts';
       ))}
     </div>
   </section>
+  <script is:inline>
+    const addButtons = document.querySelectorAll('.add-to-quote');
+    addButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        const items = JSON.parse(localStorage.getItem('quoteItems') || '[]');
+        const nextItem = {
+          category: button.dataset.category,
+          product: button.dataset.product,
+          title: button.dataset.title,
+          quantity: 1,
+        };
+        if (!items.find((item) => item.category === nextItem.category && item.product === nextItem.product)) {
+          items.push(nextItem);
+          localStorage.setItem('quoteItems', JSON.stringify(items));
+          window.dispatchEvent(new Event('quote-items-updated'));
+        }
+        button.textContent = 'Added';
+      });
+    });
+  </script>
 </Layout>

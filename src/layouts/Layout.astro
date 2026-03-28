@@ -63,6 +63,7 @@ const canonical = new URL(Astro.url.pathname, siteUrl).href;
           <a href="/request-a-quote">Request a Quote</a>
           <a href="/faq">FAQ</a>
           <a href="/contact">Contact</a>
+          <a href="/request-a-quote" id="quote-basket-link">Quote List (0)</a>
         </nav>
       </div>
     </header>
@@ -122,5 +123,17 @@ const canonical = new URL(Astro.url.pathname, siteUrl).href;
         </div>
       </div>
     </footer>
+    <script is:inline>
+      const updateQuoteCount = () => {
+        try {
+          const items = JSON.parse(localStorage.getItem('quoteItems') || '[]');
+          const link = document.getElementById('quote-basket-link');
+          if (link) link.textContent = `Quote List (${items.length})`;
+        } catch {}
+      };
+      updateQuoteCount();
+      window.addEventListener('storage', updateQuoteCount);
+      window.addEventListener('quote-items-updated', updateQuoteCount);
+    </script>
   </body>
 </html>

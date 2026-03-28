@@ -9,6 +9,7 @@ const path = Astro.url.searchParams.get('path') ?? '';
 const contextLine = [category && `Category: ${category}`, product && `Product/Model: ${product}`, path && `Entry Path: ${path}`]
   .filter(Boolean)
   .join(' | ');
+const quoteItemsJson = '[]';
 
 const subjectBase = product
   ? `Quote Request — ${product}`
@@ -30,6 +31,7 @@ const subjectBase = product
           client. If needed, you can still email or call directly.
         </p>
         {contextLine && <p class="lead"><strong>Current selection:</strong> {contextLine}</p>}
+        <p class="lead" id="quote-list-summary"></p>
         <div class="actions">
           <a class="btn btn-secondary" href={`mailto:${siteConfig.email}?subject=${encodeURIComponent(subjectBase)}`}>Email Instead</a>
           <a class="btn btn-secondary" href={`tel:${siteConfig.phoneHref}`}>Call {siteConfig.phone}</a>
@@ -52,6 +54,10 @@ const subjectBase = product
     <div class="band">
       <h2>Submit Your Quote Request</h2>
       <form class="rfq-form" id="rfq-form">
+        <div class="form-group form-group-full" id="quote-list-container" style="display:none;">
+          <label>Quote List</label>
+          <div id="quote-list-items" class="path-grid"></div>
+        </div>
         <div class="form-grid">
           <div class="form-group">
             <label for="name">Name</label>
@@ -89,6 +95,10 @@ const subjectBase = product
           <div class="form-group">
             <label for="quantity">Quantity</label>
             <input id="quantity" name="quantity" placeholder="How many?" />
+          </div>
+          <div class="form-group">
+            <label for="accessories">Accessories Needed</label>
+            <input id="accessories" name="accessories" placeholder="Extensions, plates, safety blocks..." />
           </div>
           <div class="form-group">
             <label for="timeline">Timeline / Urgency</label>
@@ -135,6 +145,11 @@ const subjectBase = product
         <a class="inline-link" href="/request-a-quote?category=mammut-jacks">Open Mammut RFQ</a>
       </div>
       <div class="path-card">
+        <h3>Need Mammut accessories too?</h3>
+        <p>Add accessory items like extensions, saddles, tilting plates, and safety components to the quote list before submitting.</p>
+        <a class="inline-link" href="/mammut-jacks">Browse Mammut Accessories</a>
+      </div>
+      <div class="path-card">
         <h3>Quote Wheel Chocks</h3>
         <p>Use this when tire diameter, GVW, and operating surface are the main factors.</p>
         <a class="inline-link" href="/request-a-quote?category=wheel-chocks">Open Wheel Chock RFQ</a>
@@ -151,13 +166,66 @@ const subjectBase = product
     const form = document.getElementById('rfq-form');
     const preview = document.getElementById('rfq-preview');
     const copyButton = document.getElementById('copy-rfq');
+    const quoteListItems = document.getElementById('quote-list-items');
+    const quoteListContainer = document.getElementById('quote-list-container');
+    const quoteListSummary = document.getElementById('quote-list-summary');
+    const quoteListItems = document.getElementById('quote-list-items');
+    const quoteListContainer = document.getElementById('quote-list-container');
+    const quoteListSummary = document.getElementById('quote-list-summary');
+
+    const getQuoteItems = () => {
+      try {
+        return JSON.parse(localStorage.getItem('quoteItems') || '[]');
+      } catch {
+        return [];
+      }
+    };
+
+    const renderQuoteItems = () => {
+      const items = getQuoteItems();
+      if (!quoteListItems || !quoteListContainer || !quoteListSummary) return items;
+      if (!items.length) {
+        quoteListContainer.style.display = 'none';
+        quoteListSummary.textContent = '';
+        return items;
+      }
+      quoteListContainer.style.display = 'grid';
+      quoteListSummary.textContent = `${items.length} item(s) currently added to your quote list.`;
+      quoteListItems.innerHTML = items.map((item, index) => `
+        <div class="path-card">
+          <h3>${item.title}</h3>
+          <p><strong>Category:</strong> ${item.category}</p>
+          <p><strong>Product/Model:</strong> ${item.product}</p>
+          <label style="display:block; margin:10px 0 6px; font-weight:700;">Quantity</label>
+          <input class="quote-item-qty" type="number" min="1" value="${item.quantity || 1}" data-index="${index}" style="width:100%; padding:10px 12px; border:1px solid #d7dee7; border-radius:8px; margin-bottom:10px;" />
+          <button class="btn btn-secondary remove-quote-item" type="button" data-index="${index}">Remove</button>
+        </div>
+      `).join('');
+      quoteListItems.querySelectorAll('.remove-quote-item').forEach((button) => {
+        button.addEventListener('click', () => {
+          const next = getQuoteItems();
+          next.splice(Number(button.dataset.index), 1);
+          localStorage.setItem('quoteItems', JSON.stringify(next));
+          window.dispatchEvent(new Event('quote-items-updated'));
+          renderQuoteItems();
+          renderQuoteItems();
+    updatePreview();
+        });
+      });
+      return items;
+    };
 
     const buildMessage = () => {
       const data = new FormData(form);
+      const items = getQuoteItems();
+      const itemLines = items.length
+        ? ['Quote List:', ...items.map((item, i) => `${i + 1}. ${item.title} (${item.product}) — ${item.category} — Qty: ${item.quantity || 1}`), '']
+        : [];
       const lines = [
         'Hello Heavy Lifts Canada,',
         '',
         contextLine ? `Current Selection: ${contextLine}` : '',
+        ...itemLines,
         `Name: ${data.get('name') || ''}`,
         `Company: ${data.get('company') || ''}`,
         `Email: ${data.get('email') || ''}`,
@@ -166,6 +234,7 @@ const subjectBase = product
         `Category: ${data.get('category') || ''}`,
         `Product / Model: ${data.get('product') || ''}`,
         `Quantity: ${data.get('quantity') || ''}`,
+        `Accessories Needed: ${data.get('accessories') || ''}`,
         `Timeline / Urgency: ${data.get('timeline') || ''}`,
         '',
         'Application Details:',
@@ -182,6 +251,14 @@ const subjectBase = product
     };
 
     form?.addEventListener('input', updatePreview);
+    window.addEventListener('quote-items-updated', () => {
+      renderQuoteItems();
+      updatePreview();
+    });
+    window.addEventListener('quote-items-updated', () => {
+      renderQuoteItems();
+      updatePreview();
+    });
     form?.addEventListener('submit', (event) => {
       event.preventDefault();
       if (!form.reportValidity()) return;
