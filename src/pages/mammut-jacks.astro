@@ -52,29 +52,36 @@ import { mammutAccessories } from '../data/mammutAccessories';
               <button class="btn btn-primary add-to-quote" type="button" data-category="mammut-jacks" data-product={product.model} data-title={product.title}>Add to Quote</button>
               <a class="inline-link" href={`/mammut-jacks/${product.slug}`}>View details</a>
             </div>
+            <p class="quote-state" data-category="mammut-jacks" data-product={product.model}></p>
           </div>
         </div>
       ))}
     </div>
   </section>
-  <script is:inline>
-    const addButtons = document.querySelectorAll('.add-to-quote');
-    addButtons.forEach((button) => {
-      button.addEventListener('click', () => {
-        const items = JSON.parse(localStorage.getItem('quoteItems') || '[]');
-        const nextItem = {
-          category: button.dataset.category,
-          product: button.dataset.product,
-          title: button.dataset.title,
-          quantity: 1,
-        };
-        if (!items.find((item) => item.category === nextItem.category && item.product === nextItem.product)) {
-          items.push(nextItem);
-          localStorage.setItem('quoteItems', JSON.stringify(items));
-          window.dispatchEvent(new Event('quote-items-updated'));
-        }
-        button.textContent = 'Added';
-      });
-    });
+
+  <section class="section">
+    <h2>Available Accessories</h2>
+    <p class="lead">Build a more complete Mammut quote by adding common accessory items directly to the quote list.</p>
+    <div class="grid">
+      {mammutAccessories.map((accessory) => (
+        <div class="card product-card">
+          <img class="product-card-image" src={accessory.image} alt={accessory.title} />
+          <div class="product-card-body">
+            <p class="product-model">Model {accessory.model}</p>
+            <h3>{accessory.title}</h3>
+            <p>{accessory.summary}</p>
+            <div class="product-actions">
+              <button class="btn btn-primary add-to-quote" type="button" data-category="mammut-accessories" data-product={accessory.model} data-title={accessory.title}>Add to Quote</button>
+            </div>
+            <p class="quote-state" data-category="mammut-accessories" data-product={accessory.model}></p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <script type="module">
+    import { bindAddToQuoteButtons } from '/src/scripts/quoteState.js';
+    bindAddToQuoteButtons();
   </script>
 </Layout>

@@ -53,7 +53,8 @@ const canonical = new URL(Astro.url.pathname, siteUrl).href;
         <a class="brand" href="/" aria-label={`${siteConfig.brandName} home`}>
           HEAVY LIFTS <span>CANADA</span>
         </a>
-        <nav class="navlinks" aria-label="Primary">
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">Menu</button>
+        <nav class="navlinks" id="primary-nav" aria-label="Primary">
           <a href="/">Home</a>
           <a href="/about">About</a>
           <a href="/mammut-jacks">Mammut Jacks</a>
@@ -131,6 +132,15 @@ const canonical = new URL(Astro.url.pathname, siteUrl).href;
           if (link) link.textContent = `Quote List (${items.length})`;
         } catch {}
       };
+
+      const navToggle = document.querySelector('.nav-toggle');
+      const nav = document.getElementById('primary-nav');
+      navToggle?.addEventListener('click', () => {
+        const expanded = navToggle.getAttribute('aria-expanded') === 'true';
+        navToggle.setAttribute('aria-expanded', String(!expanded));
+        nav?.classList.toggle('navlinks-open');
+      });
+
       updateQuoteCount();
       window.addEventListener('storage', updateQuoteCount);
       window.addEventListener('quote-items-updated', updateQuoteCount);

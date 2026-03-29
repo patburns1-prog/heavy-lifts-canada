@@ -7,6 +7,7 @@ export function getStaticPaths() {
 }
 
 const { product } = Astro.props;
+const relatedProducts = wheelChockProducts.filter((item) => item.model !== product.model).slice(0, 3);
 ---
 <Layout title={`${product.model} | Wheel Chocks | Heavy Lifts Canada`} description={product.summary}>
   <section class="hero">
@@ -57,8 +58,33 @@ const { product } = Astro.props;
     <div class="band band-dark">
       <h2>Need help choosing the right wheel chock?</h2>
       <p class="lead">If you are not certain which model fits the application, send tire size, GVW, and job conditions so we can narrow the best options.</p>
+      <ul class="spec-list">
+        <li>Include pavement, gravel, mud, or yard conditions</li>
+        <li>Note whether this is for shop, fleet, mining, or field use</li>
+        <li>Tell us if you are standardizing across multiple units</li>
+      </ul>
       <div class="actions">
-        <a class="btn btn-primary" href="/wheel-chocks">Back to Wheel Chocks</a>
+        <a class="btn btn-primary" href={`/request-a-quote?category=wheel-chocks&product=${product.model}`}>Quote {product.model}</a>
+        <a class="btn btn-secondary" href="/wheel-chocks">Back to Wheel Chocks</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Compare Other Wheel Chock Options</h2>
+    <p class="lead">If this model is close but not quite right, these are other wheel chock options worth checking next.</p>
+    <div class="path-grid">
+      {relatedProducts.map((item) => (
+        <div class="path-card">
+          <h3>{item.model}</h3>
+          <p>{item.bestFor}</p>
+          <a class="inline-link" href={`/wheel-chocks/${item.model}`}>View {item.model}</a>
+        </div>
+      ))}
+      <div class="path-card">
+        <h3>Need help standardizing?</h3>
+        <p>If you are outfitting multiple trucks, trailers, or equipment types, send the fleet details and we can help narrow a cleaner standard.</p>
+        <a class="inline-link" href="/request-a-quote?category=wheel-chocks">Start a wheel chock RFQ</a>
       </div>
     </div>
   </section>

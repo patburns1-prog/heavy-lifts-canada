@@ -7,6 +7,7 @@ export function getStaticPaths() {
 }
 
 const { product } = Astro.props;
+const relatedProducts = mammutProducts.filter((item) => item.model !== product.model).slice(0, 3);
 ---
 <Layout title={`${product.model} | Mammut Jacks | Heavy Lifts Canada`} description={product.summary}>
   <section class="hero">
@@ -57,8 +58,33 @@ const { product } = Astro.props;
     <div class="band band-dark">
       <h2>Need help comparing Mammut models?</h2>
       <p class="lead">If you are comparing multiple Mammut models, send the application details and let us help narrow the strongest starting options.</p>
+      <ul class="spec-list">
+        <li>Ask about low-profile vs high-lift tradeoffs</li>
+        <li>Include any extension or accessory needs</li>
+        <li>Reference axle, lift point, or equipment position if known</li>
+      </ul>
       <div class="actions">
-        <a class="btn btn-primary" href="/mammut-jacks">Back to Mammut Models</a>
+        <a class="btn btn-primary" href={`/request-a-quote?category=mammut-jacks&product=${product.model}`}>Quote {product.model}</a>
+        <a class="btn btn-secondary" href="/mammut-jacks">Back to Mammut Models</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Compare Nearby Mammut Options</h2>
+    <p class="lead">If this model is close but not perfect, these are the next Mammut options worth comparing.</p>
+    <div class="path-grid">
+      {relatedProducts.map((item) => (
+        <div class="path-card">
+          <h3>{item.model}</h3>
+          <p>{item.bestFor}</p>
+          <a class="inline-link" href={`/mammut-jacks/${item.slug}`}>View {item.model}</a>
+        </div>
+      ))}
+      <div class="path-card">
+        <h3>Need accessories too?</h3>
+        <p>Add extensions, saddles, tilting plates, or other Mammut accessory items before submitting your request.</p>
+        <a class="inline-link" href="/mammut-jacks">Browse Mammut accessories</a>
       </div>
     </div>
   </section>

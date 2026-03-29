@@ -56,6 +56,11 @@ const subjectBase = product
       <form class="rfq-form" id="rfq-form">
         <div class="form-group form-group-full" id="quote-list-container" style="display:none;">
           <label>Quote List</label>
+          <p class="form-note">Adjust quantities, add item-specific notes, remove anything you do not need, or keep browsing to add more products before sending.</p>
+          <div class="actions" style="margin-top:0; margin-bottom:12px;">
+            <a class="btn btn-secondary" href="/">Keep Browsing Products</a>
+            <button class="btn btn-secondary" type="button" id="clear-quote-list">Clear Quote List</button>
+          </div>
           <div id="quote-list-items" class="path-grid"></div>
         </div>
         <div class="form-grid">
@@ -169,9 +174,7 @@ const subjectBase = product
     const quoteListItems = document.getElementById('quote-list-items');
     const quoteListContainer = document.getElementById('quote-list-container');
     const quoteListSummary = document.getElementById('quote-list-summary');
-    const quoteListItems = document.getElementById('quote-list-items');
-    const quoteListContainer = document.getElementById('quote-list-container');
-    const quoteListSummary = document.getElementById('quote-list-summary');
+    const clearQuoteListButton = document.getElementById('clear-quote-list');
 
     const getQuoteItems = () => {
       try {
@@ -181,14 +184,21 @@ const subjectBase = product
       }
     };
 
+    const saveQuoteItems = (items) => {
+      localStorage.setItem('quoteItems', JSON.stringify(items));
+      window.dispatchEvent(new Event('quote-items-updated'));
+    };
+
     const renderQuoteItems = () => {
       const items = getQuoteItems();
       if (!quoteListItems || !quoteListContainer || !quoteListSummary) return items;
       if (!items.length) {
         quoteListContainer.style.display = 'none';
         quoteListSummary.textContent = '';
+        quoteListItems.innerHTML = '';
         return items;
       }
+
       quoteListContainer.style.display = 'grid';
       quoteListSummary.textContent = `${items.length} item(s) currently added to your quote list.`;
       quoteListItems.innerHTML = items.map((item, index) => `
@@ -198,20 +208,42 @@ const subjectBase = product
           <p><strong>Product/Model:</strong> ${item.product}</p>
           <label style="display:block; margin:10px 0 6px; font-weight:700;">Quantity</label>
           <input class="quote-item-qty" type="number" min="1" value="${item.quantity || 1}" data-index="${index}" style="width:100%; padding:10px 12px; border:1px solid #d7dee7; border-radius:8px; margin-bottom:10px;" />
+          <label style="display:block; margin:6px 0 6px; font-weight:700;">Item Notes</label>
+          <textarea class="quote-item-note" data-index="${index}" style="width:100%; min-height:100px; padding:10px 12px; border:1px solid #d7dee7; border-radius:8px; margin-bottom:10px;" placeholder="Application notes, axle position, clearance concerns, accessory need, or anything specific...">${item.note || ''}</textarea>
           <button class="btn btn-secondary remove-quote-item" type="button" data-index="${index}">Remove</button>
         </div>
       `).join('');
+
       quoteListItems.querySelectorAll('.remove-quote-item').forEach((button) => {
         button.addEventListener('click', () => {
           const next = getQuoteItems();
           next.splice(Number(button.dataset.index), 1);
-          localStorage.setItem('quoteItems', JSON.stringify(next));
-          window.dispatchEvent(new Event('quote-items-updated'));
-          renderQuoteItems();
-          renderQuoteItems();
-    updatePreview();
+          saveQuoteItems(next);
         });
       });
+
+      quoteListItems.querySelectorAll('.quote-item-qty').forEach((input) => {
+        input.addEventListener('input', () => {
+          const next = getQuoteItems();
+          const index = Number(input.dataset.index);
+          if (next[index]) {
+            next[index].quantity = Number(input.value) || 1;
+            saveQuoteItems(next);
+          }
+        });
+      });
+
+      quoteListItems.querySelectorAll('.quote-item-note').forEach((input) => {
+        input.addEventListener('input', () => {
+          const next = getQuoteItems();
+          const index = Number(input.dataset.index);
+          if (next[index]) {
+            next[index].note = input.value;
+            saveQuoteItems(next);
+          }
+        });
+      });
+
       return items;
     };
 
@@ -219,7 +251,11 @@ const subjectBase = product
       const data = new FormData(form);
       const items = getQuoteItems();
       const itemLines = items.length
-        ? ['Quote List:', ...items.map((item, i) => `${i + 1}. ${item.title} (${item.product}) — ${item.category} — Qty: ${item.quantity || 1}`), '']
+        ? [
+            'Quote List:',
+            ...items.map((item, i) => `${i + 1}. ${item.title} (${item.product}) — ${item.category} — Qty: ${item.quantity || 1}${item.note ? ` — Notes: ${item.note}` : ''}`),
+            ''
+          ]
         : [];
       const lines = [
         'Hello Heavy Lifts Canada,',
@@ -247,7 +283,7 @@ const subjectBase = product
     };
 
     const updatePreview = () => {
-      preview.value = buildMessage();
+      if (preview) preview.value = buildMessage();
     };
 
     form?.addEventListener('input', updatePreview);
@@ -255,16 +291,17 @@ const subjectBase = product
       renderQuoteItems();
       updatePreview();
     });
-    window.addEventListener('quote-items-updated', () => {
-      renderQuoteItems();
-      updatePreview();
-    });
+
     form?.addEventListener('submit', (event) => {
       event.preventDefault();
       if (!form.reportValidity()) return;
       const body = encodeURIComponent(buildMessage());
       const subject = encodeURIComponent(subjectBase);
       window.location.href = `mailto:${email}?subject=${subject}&body=${body}`;
+    });
+
+    clearQuoteListButton?.addEventListener('click', () => {
+      saveQuoteItems([]);
     });
 
     copyButton?.addEventListener('click', async () => {
@@ -283,6 +320,7 @@ const subjectBase = product
       }
     });
 
+    renderQuoteItems();
     updatePreview();
   </script>
 </Layout>
