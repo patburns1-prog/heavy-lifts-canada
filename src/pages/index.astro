@@ -6,18 +6,23 @@ import { siteConfig } from '../data/siteConfig';
   title="Heavy Lifts Canada | Heavy-Duty Lifting & Support Equipment in Fort McMurray"
   description="Heavy Lifts Canada supplies heavy-duty lifting and support equipment including Mammut jacks, ESCO wheel chocks, and cribbing. Based in Fort McMurray and shipping across Canada."
 >
-  <section class="hero">
-    <div class="hero-grid">
+  <section class="hero hero-video">
+    <video class="hero-video-bg" autoplay muted loop playsinline aria-hidden="true">
+      <source src="/videos/heavy-lift-hero-loop.mp4" type="video/mp4" />
+    </video>
+    <div class="hero-overlay"></div>
+    <div class="hero-grid hero-content">
       <div>
         <p class="eyebrow">Heavy-duty lifting and support equipment</p>
         <h1>Industrial Lifting & Support Equipment Backed by Practical Quote Support</h1>
         <p>
-          {siteConfig.brandName} helps shops, fleets, mining operations, contractors, and industrial
-          buyers source Mammut jacks, ESCO wheel chocks, cribbing, and related support equipment
-          across Fort McMurray and Canada.
+          {siteConfig.brandName} helps shops, fleets, mining operations, contractors, municipal
+          departments, and industrial buyers source Mammut jacks, ESCO wheel chocks, cribbing, and
+          related support equipment across Fort McMurray and Canada.
         </p>
         <div class="actions">
           <a class="btn btn-primary" href="/request-a-quote?path=known-model">Request a Quote</a>
+          <a class="btn btn-secondary" href="#categories">Browse Products</a>
           <a class="btn btn-secondary" href="/contact">Talk to Heavy Lifts Canada</a>
         </div>
         <div class="hero-stat-grid">
@@ -66,12 +71,12 @@ import { siteConfig } from '../data/siteConfig';
       <span>Built for heavy-duty repair, fleet, mining, and oilfield work.</span>
     </div>
     <div class="trust-item">
-      <strong>Quote-First</strong>
-      <span>Application-based support instead of public price clutter.</span>
+      <strong>NAABA Member</strong>
+      <span>Certified Full Aboriginal Member with NAABA.</span>
     </div>
     <div class="trust-item">
-      <strong>Direct Support</strong>
-      <span>Phone, email, and structured RFQ paths are all available.</span>
+      <strong>Quote-First</strong>
+      <span>Application-based support instead of public price clutter.</span>
     </div>
   </section>
 
@@ -117,6 +122,7 @@ import { siteConfig } from '../data/siteConfig';
             </ul>
             <div class="actions">
               <a class="btn btn-primary" href="/mammut-jacks">View Mammut Jacks</a>
+              <a class="btn btn-secondary" href="/request-a-quote?category=mammut-jacks">Quote Mammut</a>
             </div>
           </div>
         </div>
@@ -133,6 +139,7 @@ import { siteConfig } from '../data/siteConfig';
             </ul>
             <div class="actions">
               <a class="btn btn-primary" href="/wheel-chocks">View Wheel Chocks</a>
+              <a class="btn btn-secondary" href="/request-a-quote?category=wheel-chocks">Quote Wheel Chocks</a>
             </div>
           </div>
         </div>
@@ -149,6 +156,7 @@ import { siteConfig } from '../data/siteConfig';
             </ul>
             <div class="actions">
               <a class="btn btn-primary" href="/cribbing">View Cribbing</a>
+              <a class="btn btn-secondary" href="/request-a-quote?category=cribbing">Quote Cribbing</a>
             </div>
           </div>
         </div>
@@ -175,42 +183,66 @@ import { siteConfig } from '../data/siteConfig';
     </div>
   </section>
 
+  <section class="section split">
+    <div class="band-soft">
+      <h2>Simple Quote Process. No Guesswork.</h2>
+      <ol class="number-list">
+        <li>Browse by category or start with a known model</li>
+        <li>Add products to the quote list as you go</li>
+        <li>Include quantities, notes, and application details</li>
+        <li>Send one cleaner RFQ for follow-up on fit, pricing, and availability</li>
+      </ol>
+      <div class="actions">
+        <a class="btn btn-primary" href="/request-a-quote">Start Your Quote Request</a>
+      </div>
+    </div>
+    <div class="band-soft">
+      <h2>Why the workflow works better</h2>
+      <ul class="spec-list">
+        <li>No need to remember model numbers across multiple pages</li>
+        <li>Better context for mixed product and accessory requests</li>
+        <li>Cleaner handoff for application-specific quote support</li>
+        <li>More useful than a static brochure or raw catalog dump</li>
+      </ul>
+    </div>
+  </section>
+
   <section class="section">
     <h2>Featured Products</h2>
     <div class="path-grid">
-      <div class="path-card product-card">
+      <div class="path-card product-card featured-product-card">
         <img class="product-card-image" src="/images/products/mammut-91000.jpg" alt="Mammut 91000" />
         <div class="product-card-body">
           <p class="eyebrow">Featured Product</p>
           <h3>Mammut 91000</h3>
-          <p>88/55/27 ton air hydraulic jack built for high-capacity lifting where starting clearance still matters.</p>
+          <p class="product-summary">88/55/27 ton air hydraulic jack built for high-capacity lifting where starting clearance still matters.</p>
           <div class="product-actions">
-            <a class="inline-link" href="/request-a-quote?category=mammut-jacks&product=91000">Quote this model</a>
-            <a class="inline-link" href="/mammut-jacks/91000-3-stage-high-tonnage-air-hydraulic-jack">View details</a>
+            <a class="btn btn-primary" href="/request-a-quote?category=mammut-jacks&product=91000">Quote this model</a>
+            <a class="btn btn-secondary" href="/mammut-jacks/91000-3-stage-high-tonnage-air-hydraulic-jack">View details</a>
           </div>
         </div>
       </div>
-      <div class="path-card product-card">
+      <div class="path-card product-card featured-product-card">
         <img class="product-card-image" src="/images/products/12594.jpg" alt="ESCO Wheel Chock 12594" />
         <div class="product-card-body">
           <p class="eyebrow">Featured Product</p>
           <h3>Wheel Chock 12594</h3>
-          <p>120 ton GVW-rated polyurethane wheel chock for larger heavy-equipment applications and demanding holding conditions.</p>
+          <p class="product-summary">120 ton GVW-rated polyurethane wheel chock for larger heavy-equipment applications and demanding holding conditions.</p>
           <div class="product-actions">
-            <a class="inline-link" href="/request-a-quote?category=wheel-chocks&product=12594">Quote this model</a>
-            <a class="inline-link" href="/wheel-chocks/12594">View details</a>
+            <a class="btn btn-primary" href="/request-a-quote?category=wheel-chocks&product=12594">Quote this model</a>
+            <a class="btn btn-secondary" href="/wheel-chocks/12594">View details</a>
           </div>
         </div>
       </div>
-      <div class="path-card product-card">
+      <div class="path-card product-card featured-product-card">
         <img class="product-card-image" src="/images/products/12531.jpg" alt="CriBLOK Medium Kit 12531" />
         <div class="product-card-body">
           <p class="eyebrow">Featured Product</p>
           <h3>CriBLOK Medium Kit 12531</h3>
-          <p>100 ton cribbing system kit with a practical mid-range build height for structured support setups.</p>
+          <p class="product-summary">100 ton cribbing system kit with a practical mid-range build height for structured support setups.</p>
           <div class="product-actions">
-            <a class="inline-link" href="/request-a-quote?category=cribbing&product=12531">Quote this family</a>
-            <a class="inline-link" href="/cribbing/12531">View details</a>
+            <a class="btn btn-primary" href="/request-a-quote?category=cribbing&product=12531">Quote this family</a>
+            <a class="btn btn-secondary" href="/cribbing/12531">View details</a>
           </div>
         </div>
       </div>
@@ -232,7 +264,7 @@ import { siteConfig } from '../data/siteConfig';
 
   <section class="section split">
     <div class="band-soft">
-      <h2>Who We Serve</h2>
+      <h2>Serving Heavy-Duty Buyers Across Industries</h2>
       <ul class="spec-list">
         <li>Heavy-duty repair shops</li>
         <li>Commercial fleets</li>
@@ -240,17 +272,17 @@ import { siteConfig } from '../data/siteConfig';
         <li>Municipal and public works departments</li>
         <li>Industrial contractors and maintenance teams</li>
       </ul>
+      <p class="lead">If you need help narrowing the right product for the application, we can work backward from the equipment type, environment, and job conditions.</p>
     </div>
     <div class="band-soft">
-      <h2>How the Quote Process Works</h2>
-      <ol class="number-list">
-        <li>Choose the category or product closest to the need</li>
-        <li>Send the job details, model, or application requirements</li>
-        <li>Get follow-up on fit, availability, and next steps</li>
-      </ol>
-      <div class="actions">
-        <a class="btn btn-primary" href="/request-a-quote">Request a Quote</a>
-      </div>
+      <h2>Local Support with Canada-Wide Reach</h2>
+      <p class="lead">Heavy Lifts Canada is a Fort McMurray-based business built around practical quote support, straightforward product guidance, and a cleaner buying process for serious industrial customers.</p>
+      <ul class="spec-list">
+        <li>Locally owned and Fort McMurray-based</li>
+        <li>Proud of strong community ties</li>
+        <li>Certified Full Aboriginal Member with NAABA</li>
+        <li>Ships across Canada</li>
+      </ul>
     </div>
   </section>
 </Layout>

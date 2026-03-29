@@ -38,7 +38,7 @@ import { mammutAccessories } from '../data/mammutAccessories';
             <div class="product-card-body">
               <p class="product-model">Model {product.model}</p>
               <h3>{product.title}</h3>
-              <p>{product.summary}</p>
+              <p class="product-summary">{product.summary}</p>
               <p class="product-best-for"><strong>Best for:</strong> {product.bestFor}</p>
               <ul class="spec-list">
                 <li><strong>Capacity:</strong> {product.capacity}</li>
@@ -69,7 +69,7 @@ import { mammutAccessories } from '../data/mammutAccessories';
           <div class="product-card-body">
             <p class="product-model">Model {accessory.model}</p>
             <h3>{accessory.title}</h3>
-            <p>{accessory.summary}</p>
+            <p class="product-summary">{accessory.summary}</p>
             <div class="product-actions">
               <button class="btn btn-primary add-to-quote" type="button" data-category="mammut-accessories" data-product={accessory.model} data-title={accessory.title}>Add to Quote</button>
             </div>
